@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_bloc_tutorial/counter_app/counter_bloc/counter_bloc.dart';
-import 'package:flutter_bloc_tutorial/counter_app/counter_bloc/counter_event.dart';
-import 'package:flutter_bloc_tutorial/counter_app/counter_bloc/counter_state.dart';
+import 'package:flutter_bloc_tutorial/blocs/counter_bloc/counter_bloc.dart';
+import 'package:flutter_bloc_tutorial/blocs/counter_bloc/counter_event.dart';
+import 'package:flutter_bloc_tutorial/blocs/counter_bloc/counter_state.dart';
 
 class CounterScreen extends StatelessWidget {
   const CounterScreen({super.key});
@@ -12,7 +12,6 @@ class CounterScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Counter App"),
-        centerTitle: true,
       ),
       body: Center(
         child: Column(
