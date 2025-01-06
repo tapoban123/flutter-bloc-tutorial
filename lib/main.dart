@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc_tutorial/blocs/counter_bloc/counter_bloc.dart';
 import 'package:flutter_bloc_tutorial/blocs/switch_bloc/switch_bloc.dart';
+import 'package:flutter_bloc_tutorial/blocs/to_do_bloc/todo_bloc.dart';
 import 'package:flutter_bloc_tutorial/counter_app/ui/counter_screen.dart';
 import 'package:flutter_bloc_tutorial/muti_state_app/ui/multi_state_app.dart';
+import 'package:flutter_bloc_tutorial/to_do_app/ui/to_do_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,7 +23,8 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (_) => SwitchBloc(),
-        )
+        ),
+        BlocProvider(create: (_) => TodoBloc(),)
       ],
       child: MaterialApp(
         title: 'Flutter Bloc Tutorial',
@@ -31,7 +34,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const MultiStateApp(),
+        home: const ToDoApp(),
       ),
     );
   }
