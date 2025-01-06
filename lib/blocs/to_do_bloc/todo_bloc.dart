@@ -13,8 +13,10 @@ class TodoBloc extends Bloc<TodoEvents, TodoStates> {
   }
 
   void _deleteTask(DeleteTask event, Emitter emit) {
-    state.tasks.remove(event.task);
+    final List<String> newtasks = List.from(state.tasks);
 
-    emit(state.copyWith(tasks: [...state.tasks]));
+    newtasks.remove(event.task);
+
+    emit(state.copyWith(tasks: newtasks));
   }
 }

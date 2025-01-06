@@ -34,6 +34,12 @@ class _ToDoAppState extends State<ToDoApp> {
                 hintText: "Enter task here...",
                 hintStyle: TextStyle(color: Colors.black.withOpacity(0.4)),
               ),
+              onSubmitted: (newTask) {
+                context
+                    .read<TodoBloc>()
+                    .add(AddNewTask(newTask: newTask.trim()));
+                _newTaskController.clear();
+              },
             ),
             const SizedBox(
               height: 10,
@@ -43,7 +49,7 @@ class _ToDoAppState extends State<ToDoApp> {
                 if (_newTaskController.text.isNotEmpty) {
                   context
                       .read<TodoBloc>()
-                      .add(AddNewTask(newTask: _newTaskController.text));
+                      .add(AddNewTask(newTask: _newTaskController.text.trim()));
                   _newTaskController.clear();
                 } else {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -73,37 +79,49 @@ class _ToDoAppState extends State<ToDoApp> {
             ),
             Expanded(
               child: BlocBuilder<TodoBloc, TodoStates>(
-                builder: (context, state) => ListView.builder(
-                  itemCount: state.tasks.length,
-                  itemBuilder: (context, index) {
-                    final tasks = state.tasks.reversed.toList();
-                    final task = tasks[index];
-
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: ListTile(
-                        tileColor: Colors.blueGrey,
-                        trailing: IconButton(
-                          onPressed: () {
-                            context
-                                .read<TodoBloc>()
-                                .add(DeleteTask(task: task));
-                          },
-                          icon: const Icon(
-                            Icons.delete,
-                            color: Colors.red,
-                          ),
-                        ),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        title: Text(
-                          task,
-                          style: const TextStyle(color: Colors.white),
+                builder: (context, state) {
+                  if (state.tasks.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        "No Tasks.",
+                        style: TextStyle(
+                          fontSize: 20,
                         ),
                       ),
                     );
-                  },
-                ),
+                  }
+                  return ListView.builder(
+                    itemCount: state.tasks.length,
+                    itemBuilder: (context, index) {
+                      final tasks = state.tasks.reversed.toList();
+                      final task = tasks[index];
+
+                      return Padding(
+                        padding: const EdgeInsets.only(bottom: 10.0),
+                        child: ListTile(
+                          tileColor: Colors.blueGrey,
+                          trailing: IconButton(
+                            onPressed: () {
+                              context
+                                  .read<TodoBloc>()
+                                  .add(DeleteTask(task: task));
+                            },
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.red,
+                            ),
+                          ),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          title: Text(
+                            task,
+                            style: const TextStyle(color: Colors.white),
+                          ),
+                        ),
+                      );
+                    },
+                  );
+                },
               ),
             ),
           ],
