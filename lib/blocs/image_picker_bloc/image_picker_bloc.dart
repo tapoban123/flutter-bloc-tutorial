@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter_bloc_tutorial/blocs/image_picker_bloc/image_picker_events.dart';
