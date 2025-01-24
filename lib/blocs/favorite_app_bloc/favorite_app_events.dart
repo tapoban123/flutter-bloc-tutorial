@@ -18,3 +18,12 @@ class MakeItemFavourite extends FavoriteAppEvents {
   @override
   List<Object?> get props => [item];
 }
+
+class CheckCurrentItem extends FavoriteAppEvents {
+  final FavouriteItemModel item;
+
+  const CheckCurrentItem({required this.item});
+
+  @override
+  List<Object?> get props => [item];
+}

@@ -13,6 +13,7 @@ class FavoriteAppBloc extends Bloc<FavoriteAppEvents, FavoriteAppStates> {
       : super(const FavoriteAppStates()) {
     on<FetchFavouriteList>(fetchList);
     on<MakeItemFavourite>(_makeItemFavourite);
+    on<CheckCurrentItem>(_checkCurrentItem);
   }
 
   void fetchList(
@@ -27,9 +28,33 @@ class FavoriteAppBloc extends Bloc<FavoriteAppEvents, FavoriteAppStates> {
 
   void _makeItemFavourite(
       MakeItemFavourite event, Emitter<FavoriteAppStates> emit) {
-    final items = List.from(state.favItems);
+    final List<FavouriteItemModel> items = List.from(state.favItems);
+
+    final updateItemIndex = items.indexWhere(
+      (element) => element.id == event.item.id,
+    );
+
+    items[updateItemIndex] = event.item;
+
+    emit(
+      state.copyWith(
+        favItems: items,
+        listStatus: ListStatus.success,
+      ),
+    );
+  }
+
+  void _checkCurrentItem(
+      CheckCurrentItem event, Emitter<FavoriteAppStates> emit) {
+    final List<FavouriteItemModel> items = List.from(state.favItems);
+
+    final updateItemIndex = items.indexWhere(
+      (element) => element.id == event.item.id,
+    );
+    items[updateItemIndex] = event.item;
 
     emit(state.copyWith(
+      favItems: items,
       listStatus: ListStatus.success,
     ));
   }
