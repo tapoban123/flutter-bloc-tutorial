@@ -1,3 +1,5 @@
+import 'package:clean_architecture_with_bloc/config/routes/routes.dart';
+import 'package:clean_architecture_with_bloc/config/routes/routes_name.dart';
 import 'package:clean_architecture_with_bloc/views/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +16,8 @@ class MyApp extends StatelessWidget {
       title: "Clean Architecture",
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(useMaterial3: true),
-      home: const SplashScreen(),
+      initialRoute: RoutesName.splashScreen,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }
