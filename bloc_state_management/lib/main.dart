@@ -5,6 +5,7 @@ import 'package:flutter_bloc_tutorial/blocs/favorite_app_bloc/favorite_app_bloc.
 import 'package:flutter_bloc_tutorial/blocs/image_picker_bloc/image_picker_bloc.dart';
 import 'package:flutter_bloc_tutorial/blocs/switch_bloc/switch_bloc.dart';
 import 'package:flutter_bloc_tutorial/blocs/to_do_bloc/todo_bloc.dart';
+import 'package:flutter_bloc_tutorial/clean_architecture/views/splash/splash_screen.dart';
 import 'package:flutter_bloc_tutorial/favorite_app/ui/favorite_app.dart';
 import 'package:flutter_bloc_tutorial/image_picker_app/ui/image_picker_app.dart';
 import 'package:flutter_bloc_tutorial/repository/favorite_item_repository.dart';
